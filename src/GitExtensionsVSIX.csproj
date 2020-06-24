@@ -1,6 +1,7 @@
 ﻿<Project>
 
   <Import Project="Sdk.props" Sdk="Microsoft.NET.Sdk" />
+  <Import Project="..\scripts\tools\ProjectLayout.props" />
 
   <PropertyGroup>
     <OutputType>Library</OutputType>
@@ -52,9 +53,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Compile Include="..\CommonAssemblyInfo.cs">
-      <Link>Properties\CommonAssemblyInfo.cs</Link>
-    </Compile>
     <Compile Include="Commands\About.cs" />
     <Compile Include="Commands\ApplyPatch.cs" />
     <Compile Include="Commands\Blame.cs" />
@@ -109,13 +107,11 @@
       <Generator>VsixManifestGenerator</Generator>
       <LastGenOutput>source.extension.resx</LastGenOutput>
     </None>
-    <Content Include="..\Logo\git-extensions-logo-256px.png">
-      <Link>Resources\git-extensions-logo-256px.png</Link>
+    <Content Include="Resources\git-extensions-logo-256px.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
-    <Content Include="..\Logo\git-extensions-logo-32px.png">
-      <Link>Resources\git-extensions-logo-32px.png</Link>
+    <Content Include="Resources\git-extensions-logo-32px.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
