@@ -1,0 +1,44 @@
+version: 3.4.0.{build}
+
+assembly_info:
+  patch: true
+  file: '**\AssemblyInfo.*'
+  assembly_version: '{version}'
+  assembly_file_version: '{version}'
+  assembly_informational_version: '{version}'
+
+branches:
+  except:
+    - configdata
+    - gh-pages
+    - /experimental\/*/
+
+matrix:
+  fast_finish: true
+
+# https://www.appveyor.com/docs/build-environment/#build-worker-images
+image: Visual Studio 2019
+
+#init:
+#  - ps: iex ((new-object net.webclient).DownloadString('https://raw.githubusercontent.com/appveyor/ci/master/scripts/enable-rdp.ps1'))
+
+# Build settings, not to be confused with "before_build" and "after_build".
+# "project" is relative to the original build directory and not influenced by directory changes in "before_build".
+build:
+  # enable MSBuild parallel builds
+  parallel: true
+  # MSBuild verbosity level
+  verbosity: minimal
+
+# to run your custom scripts instead of automatic MSBuild
+build_script:
+- ps: |
+    & .\cibuild.cmd -restore -build -logFileName build.binlog
+    if ($LastExitCode -ne 0) { $host.SetShouldExit($LastExitCode) }
+
+artifacts:
+  - path: artifacts\log\**\*.binlog
+  - path: artifacts\bin\**\*.vsix
+
+#on_finish:
+#  - ps: $blockRdp = $true; iex ((new-object net.webclient).DownloadString('https://raw.githubusercontent.com/appveyor/ci/master/scripts/enable-rdp.ps1'))
