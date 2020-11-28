@@ -145,6 +145,23 @@
     </EmbeddedResource>
   </ItemGroup>
 
+  <Target Name="_PatchVsixManifest" AfterTargets="BeforeBuild" Condition="'$(APPVEYOR_BUILD_VERSION)' != ''">
+    <PropertyGroup>
+      <BuildVersion>$(APPVEYOR_BUILD_VERSION)</BuildVersion>
+    </PropertyGroup>
+
+    <PropertyGroup>
+      <Namespace>
+        <Namespace Prefix="ns" Uri="http://schemas.microsoft.com/developer/vsx-schema/2011" />
+      </Namespace>
+    </PropertyGroup>
+
+    <XmlPoke XmlInputPath="source.extension.vsixmanifest"
+            Namespaces="$(Namespace)"
+            Query="ns:PackageManifest/ns:Metadata/ns:Identity/@Version" 
+            Value="$(BuildVersion)" />
+  </Target>
+
   <Import Project="Sdk.targets" Sdk="Microsoft.NET.Sdk" />
   <Import Project="$(VSToolsPath)\VSSDK\Microsoft.VsSDK.targets" Condition="Exists('$(VSToolsPath)\VSSDK\Microsoft.VsSDK.targets')" />
 
