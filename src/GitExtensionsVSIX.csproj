@@ -45,12 +45,12 @@
     <Reference Include="System" />
     <Reference Include="System.Design" />
     <Reference Include="System.Windows.Forms" />
-    <PackageReference Include="EnvDTE" Version="8.0.2" />
+    <PackageReference Include="EnvDTE" Version="16.10.31320.204" />
     <PackageReference Include="Microsoft.VisualStudio.CommandBars" Version="16.10.31320.204" />
-    <PackageReference Include="Microsoft.VisualStudio.Shell.14.0" Version="14.0.23205" />
-    <PackageReference Include="Microsoft.VisualStudio.Shell.Interop.10.0" Version="10.0.30319" />
-    <PackageReference Include="Microsoft.VisualStudio.SDK.Analyzers" Version="15.7.7" PrivateAssets="all" />
-    <PackageReference Include="Microsoft.VSSDK.BuildTools" Version="15.1.192" PrivateAssets="all" />
+    <PackageReference Include="Microsoft.VisualStudio.Shell.14.0" Version="14.3.25407" />
+    <PackageReference Include="Microsoft.VisualStudio.Shell.Interop.10.0" Version="16.10.31320.204" />
+    <PackageReference Include="Microsoft.VisualStudio.SDK.Analyzers" Version="16.10.10" PrivateAssets="all" />
+    <PackageReference Include="Microsoft.VSSDK.BuildTools" Version="16.10.1055" PrivateAssets="all" />
   </ItemGroup>
 
   <ItemGroup>
@@ -148,10 +148,7 @@
       </Namespace>
     </PropertyGroup>
 
-    <XmlPoke XmlInputPath="source.extension.vsixmanifest"
-            Namespaces="$(Namespace)"
-            Query="ns:PackageManifest/ns:Metadata/ns:Identity/@Version" 
-            Value="$(BuildVersion)" />
+    <XmlPoke XmlInputPath="source.extension.vsixmanifest" Namespaces="$(Namespace)" Query="ns:PackageManifest/ns:Metadata/ns:Identity/@Version" Value="$(BuildVersion)" />
   </Target>
 
   <Import Project="Sdk.targets" Sdk="Microsoft.NET.Sdk" />
