@@ -11,7 +11,7 @@ namespace GitExtensionsVSIX
         public const string Name = "GitExtensions";
         public const string Description = @"Git Extensions is a graphical user interface for Git that allows you to control Git without using the command-line";
         public const string Language = "en-US";
-        public const string Version = "2.51.0";
+        public const string Version = "2.50.02";
         public const string Author = "Git Extensions";
         public const string Tags = "Git, Git Extensions";
     }
