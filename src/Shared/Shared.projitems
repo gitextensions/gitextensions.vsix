@@ -6,7 +6,7 @@
     <SharedGUID>562ebb47-0d22-4fde-9a91-d283947a60a9</SharedGUID>
   </PropertyGroup>
   <PropertyGroup Label="Configuration">
-    <Import_RootNamespace>GitExtensionsShared</Import_RootNamespace>
+    <Import_RootNamespace>Shared</Import_RootNamespace>
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="$(MSBuildThisFileDirectory)Commands\About.cs" />

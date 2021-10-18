@@ -27,6 +27,7 @@
 
     <EnableDefaultCompileItems>false</EnableDefaultCompileItems>
     <EnableDefaultItems>false</EnableDefaultItems>
+    <AssemblyName>GitExtensionsVsix</AssemblyName>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(VisualStudioVersion)' != ''">
@@ -77,7 +78,7 @@
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
 
-    <Content Include="$(SrcRoot)\Resources\Commands.png" >
+    <Content Include="$(SrcRoot)\Resources\Commands.png">
       <Link>Resources\Commands.png</Link>
     </Content>
   
@@ -114,7 +115,7 @@
     <XmlPoke XmlInputPath="source.extension.vsixmanifest" Namespaces="$(Namespace)" Query="ns:PackageManifest/ns:Metadata/ns:Identity/@Version" Value="$(BuildVersion)" />
   </Target>
 
-  <Import Project="..\GitExtensionsShared\GitExtensionsShared.projitems" Label="Shared" />
+  <Import Project="..\Shared\Shared.projitems" Label="Shared" />
 
   <Import Project="Sdk.targets" Sdk="Microsoft.NET.Sdk" />
   <Import Project="$(VSToolsPath)\VSSDK\Microsoft.VsSDK.targets" Condition="Exists('$(VSToolsPath)\VSSDK\Microsoft.VsSDK.targets')" />
