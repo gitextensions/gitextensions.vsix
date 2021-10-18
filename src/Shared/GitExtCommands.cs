@@ -145,6 +145,8 @@ namespace GitExtensionsVSIX
         /// <param name="e">Event args.</param>
         private void MenuItemCallback(object sender, EventArgs e)
         {
+            ThreadHelper.ThrowIfNotOnUIThread();
+
             var guiCommand = (MenuCommand)sender;
             if (_commands.TryGetValue(guiCommand.CommandID.ID, out var command))
             {

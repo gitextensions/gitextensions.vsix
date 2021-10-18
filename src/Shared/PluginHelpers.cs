@@ -3,6 +3,7 @@
 using System.Linq;
 using EnvDTE;
 using Microsoft.VisualStudio.CommandBars;
+using Microsoft.VisualStudio.Shell;
 
 namespace GitExtensionsVSIX
 {
@@ -16,6 +17,8 @@ namespace GitExtensionsVSIX
 
         public static bool ChangeCommandCaption(_DTE application, string commandBarName, string tooltipText, string caption)
         {
+            ThreadHelper.ThrowIfNotOnUIThread();
+
             if (!AllowCaptionUpdate)
             {
                 return false;
@@ -44,6 +47,8 @@ namespace GitExtensionsVSIX
 
         private static CommandBarButton FindCommandBarButton(CommandBar commandBar, string tooltipText)
         {
+            ThreadHelper.ThrowIfNotOnUIThread();
+
             return commandBar.Controls
                 .Cast<CommandBarControl>()
                 .Where(control => control.TooltipText.Trim() == tooltipText)
@@ -53,6 +58,8 @@ namespace GitExtensionsVSIX
 
         public static OutputWindowPane AcquireOutputPane(_DTE app, string name)
         {
+            ThreadHelper.ThrowIfNotOnUIThread();
+
             try
             {
                 if (name == "")
@@ -79,6 +86,8 @@ namespace GitExtensionsVSIX
 
         public static OutputWindowPane FindOutputPane(_DTE app, string name)
         {
+            ThreadHelper.ThrowIfNotOnUIThread();
+
             try
             {
                 if (name == "")

@@ -1,6 +1,7 @@
 ﻿using System.Threading;
 using EnvDTE;
 using GitExtensionsVSIX.Git;
+using Microsoft.VisualStudio.Shell;
 
 namespace GitExtensionsVSIX.Commands
 {
@@ -11,6 +12,8 @@ namespace GitExtensionsVSIX.Commands
             ThreadPool.QueueUserWorkItem(
                         o =>
                         {
+                            ThreadHelper.ThrowIfNotOnUIThread();
+
                             string file = GitCommands.RunGitExWait("searchfile", application.Solution.FullName);
 
                             if (string.IsNullOrEmpty(file?.Trim()))

@@ -2,6 +2,7 @@ using System;
 using System.Linq;
 using System.Windows.Forms;
 using EnvDTE;
+using Microsoft.VisualStudio.Shell;
 
 namespace GitExtensionsVSIX.Commands
 {
@@ -12,6 +13,8 @@ namespace GitExtensionsVSIX.Commands
     {
         public override void OnCommand(_DTE application, OutputWindowPane pane)
         {
+            ThreadHelper.ThrowIfNotOnUIThread();
+
             if (!RunForSelection)
             {
                 Document activeDocument = null;
@@ -76,6 +79,8 @@ namespace GitExtensionsVSIX.Commands
 
         private void ExecuteOnSolutionItem(SelectedItem solutionItem, _DTE application, OutputWindowPane pane)
         {
+            ThreadHelper.ThrowIfNotOnUIThread();
+
             if (solutionItem.ProjectItem != null && IsTargetSupported(GetProjectItemTarget(solutionItem.ProjectItem)))
             {
                 OnExecute(solutionItem, solutionItem.ProjectItem.FileNames[1], pane);
@@ -105,6 +110,8 @@ namespace GitExtensionsVSIX.Commands
 
         public override bool IsEnabled(_DTE application)
         {
+            ThreadHelper.ThrowIfNotOnUIThread();
+
             return application.SelectedItems.Count == 0
                 ? IsTargetSupported(application.Solution.IsOpen ? CommandTarget.Solution : CommandTarget.Empty)
                 : application.SelectedItems
@@ -123,6 +130,8 @@ namespace GitExtensionsVSIX.Commands
 
         private static CommandTarget GetSelectedItemTarget(SelectedItem selectedItem, _DTE application)
         {
+            ThreadHelper.ThrowIfNotOnUIThread();
+
             if (selectedItem.ProjectItem != null)
             {
                 return GetProjectItemTarget(selectedItem.ProjectItem);
