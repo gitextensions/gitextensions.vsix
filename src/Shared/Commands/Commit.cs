@@ -1,6 +1,7 @@
 ﻿using System;
 using EnvDTE;
 using GitExtensionsVSIX.Git;
+using Microsoft.VisualStudio.Shell;
 
 namespace GitExtensionsVSIX.Commands
 {
@@ -12,6 +13,8 @@ namespace GitExtensionsVSIX.Commands
 
         public override bool IsEnabled(_DTE application)
         {
+            ThreadHelper.ThrowIfNotOnUIThread();
+
             bool enabled = base.IsEnabled(application);
 
             string fileName = GetSelectedFile(application);
@@ -64,6 +67,8 @@ namespace GitExtensionsVSIX.Commands
 
         protected override void OnExecute(SelectedItem item, string fileName, OutputWindowPane pane)
         {
+            ThreadHelper.ThrowIfNotOnUIThread();
+
             if (item != null)
             {
                 const string saveAllCommandName = "File.SaveAll";
@@ -77,6 +82,8 @@ namespace GitExtensionsVSIX.Commands
 
         private static string GetSelectedFile(_DTE application)
         {
+            ThreadHelper.ThrowIfNotOnUIThread();
+
             foreach (SelectedItem sel in application.SelectedItems)
             {
                 if (sel.ProjectItem != null)

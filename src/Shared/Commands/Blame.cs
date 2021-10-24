@@ -1,4 +1,5 @@
 ﻿using EnvDTE;
+using Microsoft.VisualStudio.Shell;
 
 namespace GitExtensionsVSIX.Commands
 {
@@ -6,6 +7,8 @@ namespace GitExtensionsVSIX.Commands
     {
         protected override void OnExecute(SelectedItem item, string fileName, OutputWindowPane pane)
         {
+            ThreadHelper.ThrowIfNotOnUIThread();
+
             string[] arguments = null;
 
             if (item.DTE.ActiveDocument.Selection is TextSelection textSelection)

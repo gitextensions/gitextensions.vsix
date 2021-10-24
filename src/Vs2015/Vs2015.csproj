@@ -1,11 +1,10 @@
 ﻿<Project>
-
   <Import Project="Sdk.props" Sdk="Microsoft.NET.Sdk" />
-  <Import Project="..\scripts\tools\ProjectLayout.props" />
+  <Import Project="..\..\scripts\tools\ProjectLayout.props" />
 
   <PropertyGroup>
     <OutputType>Library</OutputType>
-    <TargetFramework>net461</TargetFramework>
+    <TargetFramework>net472</TargetFramework>
     <NoWarn>$(NoWarn);1696;1573;1591</NoWarn>
     <UseCodebase>true</UseCodebase>
     <GeneratePkgDefFile>true</GeneratePkgDefFile>
@@ -20,8 +19,7 @@
     <!-- Disable the automatic inclusion of Microsoft.VisualStudio.Threading since Visual Studio has a specific version. -->
     <EnableVisualStudioThreading>false</EnableVisualStudioThreading>
 
-    <CodeAnalysisRuleSet>..\GitExtensions.ruleset</CodeAnalysisRuleSet>
-
+    <CodeAnalysisRuleSet>$(SrcRoot)\GitExtensions.ruleset</CodeAnalysisRuleSet>
     <!-- Common debugging support -->
     <StartAction>Program</StartAction>
     <StartProgram>$(DevEnvDir)\devenv.exe</StartProgram>
@@ -29,6 +27,7 @@
 
     <EnableDefaultCompileItems>false</EnableDefaultCompileItems>
     <EnableDefaultItems>false</EnableDefaultItems>
+    <AssemblyName>GitExtensionsVsix</AssemblyName>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(VisualStudioVersion)' != ''">
@@ -54,50 +53,10 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Compile Include="Commands\About.cs" />
-    <Compile Include="Commands\ApplyPatch.cs" />
-    <Compile Include="Commands\Blame.cs" />
-    <Compile Include="Commands\Browse.cs" />
-    <Compile Include="Commands\Cherry.cs" />
-    <Compile Include="Commands\Clone.cs" />
-    <Compile Include="Commands\CommandBase.cs" />
-    <Compile Include="Commands\Commit.cs" />
-    <Compile Include="Commands\CreateBranch.cs" />
-    <Compile Include="Commands\FileHistory.cs" />
-    <Compile Include="Commands\FindFile.cs" />
-    <Compile Include="Commands\FormatPatch.cs" />
-    <Compile Include="Commands\GitBash.cs" />
-    <Compile Include="Commands\GitIgnore.cs" />
-    <Compile Include="Commands\Init.cs" />
-    <Compile Include="Commands\ItemCommandBase.cs" />
-    <Compile Include="Commands\Merge.cs" />
-    <Compile Include="Commands\OpenWithDifftool.cs" />
-    <Compile Include="Commands\Pull.cs" />
-    <Compile Include="Commands\Push.cs" />
-    <Compile Include="Commands\Rebase.cs" />
-    <Compile Include="Commands\Remotes.cs" />
-    <Compile Include="Commands\Revert.cs" />
-    <Compile Include="Commands\Settings.cs" />
-    <Compile Include="Commands\SolveMergeConflicts.cs" />
-    <Compile Include="Commands\Stash.cs" />
-    <Compile Include="Commands\SwitchBranch.cs" />
-    <Compile Include="Commands\ToolbarCommand.cs" />
-    <Compile Include="Commands\ViewChanges.cs" />
-    <Compile Include="Commands\VsixCommandBase.cs" />
-    <Compile Include="GitExtCommands.cs" />
-    <Compile Include="GitExtCommandTable.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>GitExtCommandTable.vsct</DependentUpon>
-    </Compile>
-    <Compile Include="GitExtensionsPackage.cs" />
-    <Compile Include="Git\GitCommands.cs" />
-    <Compile Include="PluginHelpers.cs" />
-    <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="source.extension.cs">
       <DependentUpon>source.extension.vsixmanifest</DependentUpon>
     </Compile>
-    <Content Include="..\LICENSE.md">
+    <Content Include="$(SrcRoot)\LICENSE.md">
       <Link>Resources\LICENSE.md</Link>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       <IncludeInVSIX>true</IncludeInVSIX>
@@ -108,15 +67,20 @@
       <Generator>VsixManifestGenerator</Generator>
       <LastGenOutput>source.extension.resx</LastGenOutput>
     </None>
-    <Content Include="Resources\git-extensions-logo-256px.png">
+    <Content Include="$(SrcRoot)\Resources\git-extensions-logo-256px.png">
+      <Link>Resources\git-extensions-logo-256px.png</Link>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
-    <Content Include="Resources\git-extensions-logo-32px.png">
+    <Content Include="$(SrcRoot)\Resources\git-extensions-logo-32px.png">
+      <Link>Resources\git-extensions-logo-32px.png</Link>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
-    <Content Include="Resources\Commands.png" />
+
+    <Content Include="$(SrcRoot)\Resources\Commands.png">
+      <Link>Resources\Commands.png</Link>
+    </Content>
   
     <VSCTCompile Include="GitExtCommandTable.vsct">
       <ResourceName>Menus.ctmenu</ResourceName>
@@ -150,6 +114,8 @@
 
     <XmlPoke XmlInputPath="source.extension.vsixmanifest" Namespaces="$(Namespace)" Query="ns:PackageManifest/ns:Metadata/ns:Identity/@Version" Value="$(BuildVersion)" />
   </Target>
+
+  <Import Project="..\Shared\Shared.projitems" Label="Shared" />
 
   <Import Project="Sdk.targets" Sdk="Microsoft.NET.Sdk" />
   <Import Project="$(VSToolsPath)\VSSDK\Microsoft.VsSDK.targets" Condition="Exists('$(VSToolsPath)\VSSDK\Microsoft.VsSDK.targets')" />

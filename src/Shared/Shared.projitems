@@ -1,0 +1,53 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <MSBuildAllProjects Condition="'$(MSBuildVersion)' == '' Or '$(MSBuildVersion)' &lt; '16.0'">$(MSBuildAllProjects);$(MSBuildThisFileFullPath)</MSBuildAllProjects>
+    <HasSharedItems>true</HasSharedItems>
+    <SharedGUID>562ebb47-0d22-4fde-9a91-d283947a60a9</SharedGUID>
+  </PropertyGroup>
+  <PropertyGroup Label="Configuration">
+    <Import_RootNamespace>Shared</Import_RootNamespace>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="$(MSBuildThisFileDirectory)Commands\About.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Commands\ApplyPatch.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Commands\Blame.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Commands\Browse.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Commands\Cherry.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Commands\Clone.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Commands\CommandBase.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Commands\Commit.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Commands\CreateBranch.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Commands\FileHistory.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Commands\FindFile.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Commands\FormatPatch.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Commands\GitBash.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Commands\GitIgnore.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Commands\Init.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Commands\ItemCommandBase.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Commands\Merge.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Commands\OpenWithDifftool.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Commands\Pull.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Commands\Push.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Commands\Rebase.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Commands\Remotes.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Commands\Revert.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Commands\Settings.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Commands\SolveMergeConflicts.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Commands\Stash.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Commands\SwitchBranch.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Commands\ToolbarCommand.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Commands\ViewChanges.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Commands\VsixCommandBase.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)GitExtCommands.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)GitExtCommandTable.cs">
+      <DependentUpon>GitExtCommandTable.vsct</DependentUpon>
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+    </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)GitExtensionsPackage.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Git\GitCommands.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)PluginHelpers.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+</Project>

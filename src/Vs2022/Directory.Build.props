@@ -1,0 +1,10 @@
+<Project>
+
+  <PropertyGroup>
+    <_SuppressSdkImports>true</_SuppressSdkImports>
+    <DeterministicSourcePaths>false</DeterministicSourcePaths>
+    <IsPublishable>false</IsPublishable>
+    <SrcRoot>..\..</SrcRoot>
+  </PropertyGroup>
+
+</Project>
