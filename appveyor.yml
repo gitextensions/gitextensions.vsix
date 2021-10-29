@@ -35,10 +35,13 @@ build_script:
 - ps: |
     & .\cibuild.cmd -restore -build -logFileName build.binlog
     if ($LastExitCode -ne 0) { $host.SetShouldExit($LastExitCode) }
+- ps: |
+    $zip = "combined.$env:APPVEYOR_BUILD_VERSION-unsigned.zip"
+    Compress-Archive -LiteralPath $(Get-ChildItem -Path artifacts\bin\ -Recurse -Filter *.vsix).FullName -CompressionLevel NoCompression -DestinationPath $zip -Force
 
 artifacts:
   - path: artifacts\log\**\*.binlog
-  - path: artifacts\bin\**\*.vsix
+  - path: 'combined.*-unsigned.zip'
 
 #on_finish:
 #  - ps: $blockRdp = $true; iex ((new-object net.webclient).DownloadString('https://raw.githubusercontent.com/appveyor/ci/master/scripts/enable-rdp.ps1'))

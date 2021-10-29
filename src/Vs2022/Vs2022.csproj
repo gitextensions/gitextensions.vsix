@@ -27,7 +27,7 @@
 
     <EnableDefaultCompileItems>false</EnableDefaultCompileItems>
     <EnableDefaultItems>false</EnableDefaultItems>
-    <AssemblyName>GitExtensionsVsix</AssemblyName>
+    <AssemblyName>GitExtensionsVsix.2022</AssemblyName>
   </PropertyGroup>
 
   <PropertyGroup>
