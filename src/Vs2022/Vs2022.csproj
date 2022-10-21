@@ -43,14 +43,9 @@
     <Reference Include="System" />
     <Reference Include="System.Design" />
     <Reference Include="System.Windows.Forms" />
-    <PackageReference Include="Microsoft.VisualStudio.Interop">
-      <Version>17.0.0-previews-5-31722-452</Version>
-    </PackageReference>
-    <PackageReference Include="Microsoft.VisualStudio.SDK" Version="17.0.0-previews-4-31709-430" ExcludeAssets="runtime" />
-    <PackageReference Include="Microsoft.VSSDK.BuildTools" Version="17.0.5232">
-      <PrivateAssets>all</PrivateAssets>
-      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
-    </PackageReference>
+    <PackageReference Include="Microsoft.VisualStudio.Interop" Version="17.3.32804.24" />
+    <PackageReference Include="Microsoft.VisualStudio.SDK" Version="17.3.32804.24" />
+    <PackageReference Include="Microsoft.VSSDK.BuildTools" Version="17.4.2118" PrivateAssets="all" />
   </ItemGroup>
 
   <ItemGroup>
